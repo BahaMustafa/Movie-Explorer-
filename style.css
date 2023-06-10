@@ -30,3 +30,21 @@ header {
         border: 3px solid #0fdd0f;}
 
 
+        main {
+            padding: 20px;
+        }
+        
+        #search-section {
+            margin-bottom: 20px;
+        }
+        
+        #search-input {
+            width: 70%;
+            padding: 10px;
+        }
+        
+        #search-button {
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        
