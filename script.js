@@ -165,4 +165,10 @@ function removeFromFavorites(movie) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
     displayFavorites();
 }
+function addToWatchlist(movie) {
+    let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    watchlist.push(movie);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    displayWatchlist();
+}
 
