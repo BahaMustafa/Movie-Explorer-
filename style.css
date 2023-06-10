@@ -47,4 +47,38 @@ header {
             padding: 10px 20px;
             margin-left: 10px;
         }
-        
+        .favorites-list,
+.watchlist-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.favorites-list li,
+.watchlist-list li {
+    list-style-type: none;
+    margin: 10px;
+    width: 100px; 
+    text-align: center;
+}
+
+#movie-list img {
+    width: 200px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+#movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#movie-list li {
+    list-style-type: none;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
