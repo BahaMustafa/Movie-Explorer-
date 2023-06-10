@@ -151,3 +151,11 @@ function createMovieItem(movie, listType) {
 
     return movieItem;
 }
+
+function addToFavorites(movie) {
+    console.log("addToWatchlist called", movie);
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    favorites.push(movie);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    displayFavorites();
+}
