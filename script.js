@@ -171,4 +171,10 @@ function addToWatchlist(movie) {
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
     displayWatchlist();
 }
+function removeFromWatchlist(movie) {
+    let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    watchlist = watchlist.filter(item => item.id !== movie.id);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    displayWatchlist();
+}
 
