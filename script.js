@@ -87,3 +87,23 @@ function displayMovies(movies) {
         addMovieToPage(movie);
     });
 }
+function displayFavorites() {
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const favoritesSection = document.querySelector("#favorites-section");
+    favoritesSection.innerHTML = "";
+
+    if (favorites.length === 0) {
+        favoritesSection.innerHTML = "<p>No favorite movies found.</p>";
+        return;
+    }
+
+    const favoritesList = document.createElement("ul");
+    favoritesList.classList.add("movie-list", "favorites-list");
+
+    favorites.forEach(movie => {
+        const movieItem = createMovieItem(movie, "favorites");
+        favoritesList.appendChild(movieItem);
+    });
+
+    favoritesSection.appendChild(favoritesList);
+}
