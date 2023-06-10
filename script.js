@@ -159,3 +159,10 @@ function addToFavorites(movie) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
     displayFavorites();
 }
+function removeFromFavorites(movie) {
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    favorites = favorites.filter(favorite => favorite.id !== movie.id);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    displayFavorites();
+}
+
