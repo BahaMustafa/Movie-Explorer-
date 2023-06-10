@@ -107,3 +107,23 @@ function displayFavorites() {
 
     favoritesSection.appendChild(favoritesList);
 }
+function displayWatchlist() {
+    const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    const watchlistSection = document.querySelector("#watchlist-section");
+    watchlistSection.innerHTML = "";
+
+    if (watchlist.length === 0) {
+        watchlistSection.innerHTML = "<p>No movies in watchlist.</p>";
+        return;
+    }
+
+    const watchlistList = document.createElement("ul");
+    watchlistList.classList.add("movie-list", "watchlist-list");
+
+    watchlist.forEach(movie => {
+        const movieItem = createMovieItem(movie, "watchlist");
+        watchlistList.appendChild(movieItem);
+    });
+
+    watchlistSection.appendChild(watchlistList);
+}
