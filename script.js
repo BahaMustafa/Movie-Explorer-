@@ -127,3 +127,27 @@ function displayWatchlist() {
 
     watchlistSection.appendChild(watchlistList);
 }
+function createMovieItem(movie, listType) {
+    const movieItem = document.createElement("li");
+    const movieTitle = document.createElement("h2");
+    const movieImage = document.createElement("img");
+
+    movieTitle.textContent = movie.title;
+    movieImage.src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    removeButton.classList.add("button", "remove");
+    
+    if (listType === "favorites") {
+        removeButton.addEventListener("click", () => removeFromFavorites(movie));
+    } else if (listType === "watchlist") {
+        removeButton.addEventListener("click", () => removeFromWatchlist(movie));
+    }
+
+    movieItem.appendChild(movieTitle);
+    movieItem.appendChild(movieImage);
+    movieItem.appendChild(removeButton);
+
+    return movieItem;
+}
