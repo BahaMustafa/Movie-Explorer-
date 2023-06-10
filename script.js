@@ -59,3 +59,31 @@ function addMovieToPage(movie) {
     movieItem.appendChild(watchlistButton);
     movieList.appendChild(movieItem);
 }
+
+function getMovies() {
+    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${secrets.API_KEY}`;
+
+    return fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  
+            const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+            const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+
+            return data.results.map(movie => {
+                movie.isFavorite = favorites.some(favorite => favorite.id === movie.id);
+                movie.isInWatchlist = watchlist.some(item => item.id === movie.id);
+                return movie;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function displayMovies(movies) {
+    const movieList = document.querySelector("#movie-list");
+    movieList.innerHTML = "";
+
+    movies.forEach(movie => {
+        addMovieToPage(movie);
+    });
+}
