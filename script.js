@@ -1,20 +1,17 @@
-let secrets;
-fetch('./secrets.json')
-  .then(response => response.json())
-  .then(data => secrets = data);
 
-  document.addEventListener('DOMContentLoaded', async () => {
+
+document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.querySelector('#search-button');
     searchButton.addEventListener('click', performSearch);
-
-    await fetch('./secrets.json')
-        .then(response => response.json())
-        .then(data => secrets = data);
 
     getMovies().then(displayMovies);
     displayFavorites();
     displayWatchlist();
 });
+
+function loadHomePage() {
+    getMovies().then(displayMovies);
+}
 
 function performSearch() {
     const searchTerm = document.querySelector('#search-input').value;
@@ -22,19 +19,19 @@ function performSearch() {
 }
 
 function searchMovies(searchTerm) {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${secrets.API_KEY}&query=${searchTerm}`;
+    const url = `https://us-central1-uplifted-mantra-385806.cloudfunctions.net/function-1?searchTerm=${searchTerm}`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            const movieList = document.querySelector("#movie-list");
-            movieList.innerHTML = '';  // Clear the movie list
             data.results.forEach(movie => {
                 addMovieToPage(movie);
             });
         })
         .catch(error => console.error('Error:', error));
 }
+
+
 function addMovieToPage(movie) {
     const movieList = document.querySelector("#movie-list");
 
@@ -63,7 +60,7 @@ function addMovieToPage(movie) {
 }
 
 function getMovies() {
-    const url = `https://api.themoviedb.org/3/movie/popular?api_key=${secrets.API_KEY}`;
+    const url = 'https://us-central1-uplifted-mantra-385806.cloudfunctions.net/function-1';
 
     return fetch(url)
         .then(response => response.json())
