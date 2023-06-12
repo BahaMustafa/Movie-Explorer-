@@ -1,7 +1,9 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM content loaded');
     const searchButton = document.querySelector('#search-button');
+    console.log('searchButton:', searchButton);
     searchButton.addEventListener('click', performSearch);
 
     getMovies().then(displayMovies);
@@ -9,14 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     displayWatchlist();
 });
 
-function loadHomePage() {
-    getMovies().then(displayMovies);
-}
+
 
 function performSearch() {
+    console.log('performSearch called');
     const searchTerm = document.querySelector('#search-input').value;
+    console.log('searchTerm:', searchTerm);
     searchMovies(searchTerm);
 }
+
+
 
 function searchMovies(searchTerm) {
     const url = `https://us-central1-uplifted-mantra-385806.cloudfunctions.net/function-1?searchTerm=${searchTerm}`;
@@ -24,12 +28,26 @@ function searchMovies(searchTerm) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            const movieList = document.querySelector("#movie-list");
+            movieList.innerHTML = "";
+
+            if (data.results.length === 0) {
+                movieList.innerHTML = "<p>No results found.</p>";
+                return;
+            }
+
             data.results.forEach(movie => {
+                console.log('Adding movie:', movie.title); // This is the line you add
                 addMovieToPage(movie);
             });
         })
         .catch(error => console.error('Error:', error));
 }
+
+
+
+
+
 
 
 function addMovieToPage(movie) {
@@ -59,13 +77,13 @@ function addMovieToPage(movie) {
     movieList.appendChild(movieItem);
 }
 
+
 function getMovies() {
     const url = 'https://us-central1-uplifted-mantra-385806.cloudfunctions.net/function-1';
 
     return fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data);  
             const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
             const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
@@ -78,6 +96,7 @@ function getMovies() {
         .catch(error => console.error('Error:', error));
 }
 
+
 function displayMovies(movies) {
     const movieList = document.querySelector("#movie-list");
     movieList.innerHTML = "";
@@ -86,6 +105,7 @@ function displayMovies(movies) {
         addMovieToPage(movie);
     });
 }
+
 function displayFavorites() {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const favoritesSection = document.querySelector("#favorites-section");
@@ -106,6 +126,7 @@ function displayFavorites() {
 
     favoritesSection.appendChild(favoritesList);
 }
+
 function displayWatchlist() {
     const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
     const watchlistSection = document.querySelector("#watchlist-section");
@@ -126,6 +147,7 @@ function displayWatchlist() {
 
     watchlistSection.appendChild(watchlistList);
 }
+
 function createMovieItem(movie, listType) {
     const movieItem = document.createElement("li");
     const movieTitle = document.createElement("h2");
