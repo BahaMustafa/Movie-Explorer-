@@ -21,13 +21,10 @@ header {
     padding: 20px;
     border: 3px solid #9f0f0f;}
     
-#favorites-section{margin-bottom: 20px;
-    padding: 20px;
-    border: 3px solid #0ceccb;}
 
-    #watchlist-section{margin-bottom: 20px;
+    #watchlist-section,#favorites-section{margin-bottom: 20px;
         padding: 20px;
-        border: 3px solid #0fdd0f;}
+        border: 3px solid #810b0b;}
 
 
         main {
@@ -163,4 +160,4 @@ header {
       width: 100%;
     }
   }
-  
+ 

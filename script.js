@@ -178,3 +178,5 @@ function removeFromWatchlist(movie) {
     displayWatchlist();
 }
 
+
+
