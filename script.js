@@ -27,6 +27,8 @@ function searchMovies(searchTerm) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            const movieList = document.querySelector("#movie-list");
+            movieList.innerHTML = '';  // Clear the movie list
             data.results.forEach(movie => {
                 addMovieToPage(movie);
             });
