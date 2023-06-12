@@ -40,7 +40,7 @@ header {
             padding: 10px;
         }
         
-        #search-button {
+        #search-button,#home-button {
             padding: 10px 20px;
             margin-left: 10px;
         }

@@ -1,15 +1,23 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM content loaded');
+    const homeButton = document.querySelector('#home-button');
+    homeButton.addEventListener('click', goHome);
+
     const searchButton = document.querySelector('#search-button');
-    console.log('searchButton:', searchButton);
     searchButton.addEventListener('click', performSearch);
 
     getMovies().then(displayMovies);
     displayFavorites();
     displayWatchlist();
 });
+
+function goHome() {
+    const searchInput = document.querySelector('#search-input');
+    searchInput.value = '';
+    getMovies().then(displayMovies);
+}
+
 
 
 
