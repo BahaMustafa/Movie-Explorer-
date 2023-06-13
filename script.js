@@ -82,6 +82,14 @@ function addMovieToPage(movie) {
     movieItem.appendChild(movieImage);
     movieItem.appendChild(favoriteButton);
     movieItem.appendChild(watchlistButton);
+
+    if (movie.trailer) {
+        const trailerLink = document.createElement("a");
+        trailerLink.href = movie.trailer;
+        trailerLink.textContent = "Watch Trailer";
+        movieItem.appendChild(trailerLink);
+    }
+
     movieList.appendChild(movieItem);
 }
 
