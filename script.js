@@ -45,7 +45,7 @@ function searchMovies(searchTerm) {
             }
 
             data.results.forEach(movie => {
-                console.log('Adding movie:', movie.title); // This is the line you add
+                console.log('Adding movie:', movie.title); 
                 addMovieToPage(movie);
             });
         })

@@ -83,7 +83,7 @@ header {
     display: inline-block;
     padding: 8px 12px;
     margin: 4px;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
@@ -155,9 +155,47 @@ header {
       margin: 0;
       padding: 0;
     }
+
+    #search-input {
+        width: 90%; 
+        padding: 5px; 
+    }
+
+    #search-button,#home-button {
+        padding: 5px 10px; 
+    }
   
     #search-section, #results-section, #details-section, #favorites-section, #watchlist-section {
       width: 100%;
+      padding: 10px; 
     }
-  }
+
+    #movie-list img {
+        width: 100px;
+        max-width: 100px; 
+    }
+
+    #movie-list li, .favorites-list li, .watchlist-list li {
+        margin: 5px; 
+        width: calc((100% / 3) - 10px); 
+        font-size: 6px;
+    }
+
+    .button {
+        padding: 4px 6px; 
+        font-size: 12px; 
+    }
+
+    .favorites-list li,
+    .watchlist-list li {
+        width: 30%; 
+    }
+
+    .favorites-list img,
+    .watchlist-list img {
+        width: 100%; 
+        max-width: 75px;
+    }
+}
+
  
