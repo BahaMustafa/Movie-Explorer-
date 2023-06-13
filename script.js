@@ -87,8 +87,10 @@ function addMovieToPage(movie) {
         const trailerLink = document.createElement("a");
         trailerLink.href = movie.trailer;
         trailerLink.textContent = "Watch Trailer";
+        trailerLink.classList.add("button", "trailer");  
         movieItem.appendChild(trailerLink);
     }
+    
 
     movieList.appendChild(movieItem);
 }

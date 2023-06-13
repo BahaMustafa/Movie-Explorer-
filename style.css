@@ -12,7 +12,7 @@ body {
 
 header {
     background-color: #333;
-    color: white;
+    color: rgb(218, 215, 215);
     padding: 10px 0;
     text-align: center;
 }
@@ -29,7 +29,7 @@ header {
 
     #watchlist-section,#favorites-section{margin-bottom: 20px;
         padding: 20px;
-        border: 3px solid #810b0b;}
+        border: 3px solid #b01b1b;}
 
 
         main {
@@ -48,7 +48,13 @@ header {
         #search-button,#home-button {
             padding: 10px 20px;
             margin-left: 10px;
-        }
+            background-color: #008080;
+           box-shadow: 5px 5px 10px rgba(0, 128, 128, 0.3);
+           border-radius: 10px;
+            color: #fff;
+           text-decoration: none;
+}
+        
 .favorites-list,
 .watchlist-list {
     display: flex;
@@ -103,15 +109,15 @@ header {
 }
 
 .button.favorite {
-    background-color: #000000;
+    background-color: #5b3c54;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .button.watchlist {
-    background-color: #a71414;
+    background-color: #706a6a;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .button.remove {
@@ -222,3 +228,14 @@ header {
     background-color: #555;
   }
   
+  .button.trailer {
+    background-color: #008080;
+    box-shadow: 5px 5px 10px rgba(0, 128, 128, 0.3);
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.button.trailer:hover {
+    background-color: #006666;
+}
