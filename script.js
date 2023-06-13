@@ -207,5 +207,19 @@ function removeFromWatchlist(movie) {
     displayWatchlist();
 }
 
+window.onscroll = function() {
+    showBackToTopButton();
+  };
 
-
+  function showBackToTopButton() {
+    var button = document.getElementById("back-to-top-btn");
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      button.style.display = "block";
+    } else {
+      button.style.display = "none";
+    }
+  }
+  function scrollToTop() {
+    document.body.scrollTop = 0; 
+    document.documentElement.scrollTop = 0; 
+  }
