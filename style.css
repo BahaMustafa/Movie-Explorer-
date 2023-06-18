@@ -1,241 +1,145 @@
 html {
-    scroll-behavior: smooth;
-  }
-  
+  scroll-behavior: smooth;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #fafafa;
 }
 
 header {
-    background-color: #333;
-    color: rgb(218, 215, 215);
-    padding: 10px 0;
-    text-align: center;
+  background-color: #5e5d5b;
+  background-image:  #2d2d2d;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
 }
 
-#results-section {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-}
-#details-section{margin-bottom: 20px;
-    padding: 20px;
-    border: 3px solid #9f0f0f;}
-    
-
-    #watchlist-section,#favorites-section{margin-bottom: 20px;
-        padding: 20px;
-        border: 3px solid #b01b1b;}
-
-
-        main {
-            padding: 20px;
-        }
-        
-        #search-section {
-            margin-bottom: 20px;
-        }
-        
-        #search-input {
-            width: 70%;
-            padding: 10px;
-        }
-        
-        #search-button,#home-button {
-            padding: 10px 20px;
-            margin-left: 10px;
-            background-color: #008080;
-           box-shadow: 5px 5px 10px rgba(0, 128, 128, 0.3);
-           border-radius: 10px;
-            color: #fff;
-           text-decoration: none;
-}
-        
-.favorites-list,
-.watchlist-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+#results-section, #details-section, #watchlist-section, #favorites-section {
+  margin-bottom: 20px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
 }
 
-.favorites-list li,
-.watchlist-list li {
-    list-style-type: none;
-    margin: 10px;
-    width: 100px; 
-    text-align: center;
+main {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#movie-list img {
-    width: 200px;
-    height: auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+#search-section {
+  margin-bottom: 20px;
+  width: 70%;
 }
 
-#movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+#search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
 }
 
-#movie-list li {
-    list-style-type: none;
-    margin: 10px;
-    width: 200px;
-    text-align: center;
+#search-button, #home-button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #3897f0;
+  color: #ffffff;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  text-transform: uppercase;
 }
+
+.favorites-list, .watchlist-list, #movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.favorites-list li, .watchlist-list li, #movie-list li {
+  list-style-type: none;
+  margin: 2px;
+  width: calc(33% - 4px);
+  text-align: center;
+}
+
+#movie-list img, .favorites-list img, .watchlist-list img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 .button {
-    display: inline-block;
-    padding: 8px 12px;
-    margin: 4px;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    color: #fff;
-    background-color: #333;
-    border: none;
-    cursor: pointer;
+  padding: 8px 12px;
+  margin: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #3897f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .button:hover {
-    background-color: #555;
+  background-color: #3076ab;
 }
 
-.button.favorite {
-    background-color: #5b3c54;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-}
+@media (max-width: 991px) {
+  body {
+    margin: 0;
+    padding: 0;
+  }
 
-.button.watchlist {
-    background-color: #706a6a;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-}
+  #search-input {
+    width: 90%;
+    padding: 5px;
+  }
 
-.button.remove {
-    background-color: #f44336;
-}
+  #search-section, #results-section, #details-section, #favorites-section, #watchlist-section {
+    width: 100%;
+    padding: 10px;
+  }
 
-.favorites-list,
-.watchlist-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.favorites-list li,
-.watchlist-list li {
-    list-style-type: none;
-    margin: 10px;
-    width: 100px; 
-    text-align: center;
-}
-
-.favorites-list img,
-.watchlist-list img {
-    width: 100px; 
-    height: auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-#movie-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-#movie-list li {
-    list-style-type: none;
-    margin: 10px;
-    width: 200px;
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    #search-input {
-        width: 90%; 
-        padding: 5px; 
-    }
-
-    #search-button,#home-button {
-        padding: 5px 10px; 
-    }
-  
-    #search-section, #results-section, #details-section, #favorites-section, #watchlist-section {
-      width: 100%;
-      padding: 10px; 
-    }
-
-    #movie-list img {
-        width: 100px;
-        max-width: 100px; 
-    }
-
-    #movie-list li, .favorites-list li, .watchlist-list li {
-        margin: 5px; 
-        width: calc((100% / 3) - 10px); 
-        font-size: 6px;
-    }
-
-    .button {
-        padding: 4px 6px; 
-        font-size: 12px; 
-    }
-
-    .favorites-list li,
-    .watchlist-list li {
-        width: 30%; 
-    }
-
-    .favorites-list img,
-    .watchlist-list img {
-        width: 100%; 
-        max-width: 75px;
-    }
+  .button {
+    padding: 4px 6px;
+    font-size: 8px;
+  }
 }
 
 #back-to-top-btn {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 99;
-    cursor: pointer;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-  }
-  
-  #back-to-top-btn:hover {
-    background-color: #555;
-  }
-  
-  .button.trailer {
-    background-color: #008080;
-    box-shadow: 5px 5px 10px rgba(0, 128, 128, 0.3);
-    border-radius: 20px;
-    color: #fff;
-    text-decoration: none;
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #3897f0;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#back-to-top-btn:hover {
+  background-color: #3076ab;
+}
+
+.button.trailer {
+  background-color: #3897f0;
+  color: #fff;
+  text-decoration: none;
 }
 
 .button.trailer:hover {
-    background-color: #006666;
+  background-color: #3076ab;
 }
