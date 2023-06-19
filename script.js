@@ -1,26 +1,30 @@
-
-
+// Listen for when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Select home button and add click event listener
     const homeButton = document.querySelector('#home-button');
     homeButton.addEventListener('click', goHome);
 
+    // Select search button and add click event listener
     const searchButton = document.querySelector('#search-button');
     searchButton.addEventListener('click', performSearch);
 
+    // Fetch movies and display them once they're loaded
     getMovies().then(displayMovies);
+    
+    // Display the user's favorites and watchlist
     displayFavorites();
     displayWatchlist();
 });
 
+// Function to navigate to the home page
 function goHome() {
     const searchInput = document.querySelector('#search-input');
-    searchInput.value = '';
-    getMovies().then(displayMovies);
+    searchInput.value = '';  // Clear the search input
+    getMovies().then(displayMovies);  // Fetch and display movies
 }
 
-
-
-
+// Perform a movie search based on the user's input
 function performSearch() {
     console.log('performSearch called');
     const searchTerm = document.querySelector('#search-input').value;
@@ -28,8 +32,7 @@ function performSearch() {
     searchMovies(searchTerm);
 }
 
-
-
+// Search movies using the provided search term
 function searchMovies(searchTerm) {
     const url = `https://us-central1-uplifted-mantra-385806.cloudfunctions.net/function-1?searchTerm=${searchTerm}`;
 
@@ -52,21 +55,18 @@ function searchMovies(searchTerm) {
         .catch(error => console.error('Error:', error));
 }
 
-
-
-
-
-
-
+// Add a movie to the page
 function addMovieToPage(movie) {
     const movieList = document.querySelector("#movie-list");
 
+    // Create HTML elements for the movie
     const movieItem = document.createElement("li");
     const movieTitle = document.createElement("h2");
     const movieImage = document.createElement("img");
     const favoriteButton = document.createElement("button");
     const watchlistButton = document.createElement("button");
 
+    // Set content and attributes for the movie elements
     movieTitle.textContent = movie.title;
     movieImage.src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
     favoriteButton.textContent = "Add to Favorites";
@@ -75,14 +75,17 @@ function addMovieToPage(movie) {
     favoriteButton.classList.add("button", "favorite");
     watchlistButton.classList.add("button", "watchlist");
 
+    // Add event listeners to the favorite and watchlist buttons
     favoriteButton.addEventListener("click", () => addToFavorites(movie));
     watchlistButton.addEventListener("click", () => addToWatchlist(movie));
 
+    // Append the movie elements to the movie item
     movieItem.appendChild(movieTitle);
     movieItem.appendChild(movieImage);
     movieItem.appendChild(favoriteButton);
     movieItem.appendChild(watchlistButton);
 
+    // If a trailer URL is available, add a trailer link
     if (movie.trailer) {
         const trailerLink = document.createElement("a");
         trailerLink.href = movie.trailer;
@@ -90,12 +93,12 @@ function addMovieToPage(movie) {
         trailerLink.classList.add("button", "trailer");  
         movieItem.appendChild(trailerLink);
     }
-    
 
+    // Add the movie item to the movie list
     movieList.appendChild(movieItem);
 }
 
-
+// Fetch the list of movies from the API
 function getMovies() {
     const url = 'https://us-central1-uplifted-mantra-385806.cloudfunctions.net/function-1';
 
@@ -105,6 +108,7 @@ function getMovies() {
             const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
             const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
+            // Add properties to each movie indicating if it's in the favorites or watchlist
             return data.results.map(movie => {
                 movie.isFavorite = favorites.some(favorite => favorite.id === movie.id);
                 movie.isInWatchlist = watchlist.some(item => item.id === movie.id);
@@ -114,7 +118,7 @@ function getMovies() {
         .catch(error => console.error('Error:', error));
 }
 
-
+// Display a list of movies on the page
 function displayMovies(movies) {
     const movieList = document.querySelector("#movie-list");
     movieList.innerHTML = "";
@@ -124,6 +128,7 @@ function displayMovies(movies) {
     });
 }
 
+// Display the user's favorite movies
 function displayFavorites() {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const favoritesSection = document.querySelector("#favorites-section");
@@ -145,6 +150,7 @@ function displayFavorites() {
     favoritesSection.appendChild(favoritesList);
 }
 
+// Display the user's watchlist
 function displayWatchlist() {
     const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
     const watchlistSection = document.querySelector("#watchlist-section");
@@ -166,6 +172,7 @@ function displayWatchlist() {
     watchlistSection.appendChild(watchlistList);
 }
 
+// Create a movie list item
 function createMovieItem(movie, listType) {
     const movieItem = document.createElement("li");
     const movieTitle = document.createElement("h2");
@@ -191,6 +198,7 @@ function createMovieItem(movie, listType) {
     return movieItem;
 }
 
+// Add a movie to the favorites list
 function addToFavorites(movie) {
     console.log("addToWatchlist called", movie);
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -198,18 +206,24 @@ function addToFavorites(movie) {
     localStorage.setItem("favorites", JSON.stringify(favorites));
     displayFavorites();
 }
+
+// Remove a movie from the favorites list
 function removeFromFavorites(movie) {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     favorites = favorites.filter(favorite => favorite.id !== movie.id);
     localStorage.setItem("favorites", JSON.stringify(favorites));
     displayFavorites();
 }
+
+// Add a movie to the watchlist
 function addToWatchlist(movie) {
     let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
     watchlist.push(movie);
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
     displayWatchlist();
 }
+
+// Remove a movie from the watchlist
 function removeFromWatchlist(movie) {
     let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
     watchlist = watchlist.filter(item => item.id !== movie.id);
@@ -217,20 +231,23 @@ function removeFromWatchlist(movie) {
     displayWatchlist();
 }
 
+// Event handler for scrolling
 window.onscroll = function() {
     showBackToTopButton();
-  };
+};
 
-  function showBackToTopButton() {
+// Show or hide the "back to top" button based on scroll position
+function showBackToTopButton() {
     var button = document.getElementById("back-to-top-btn");
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      button.style.display = "block";
+        button.style.display = "block";
     } else {
-      button.style.display = "none";
+        button.style.display = "none";
     }
-  }
-  function scrollToTop() {
+}
+
+// Scroll the page back to the top
+function scrollToTop() {
     document.body.scrollTop = 0; 
     document.documentElement.scrollTop = 0; 
-  }
-
+}
