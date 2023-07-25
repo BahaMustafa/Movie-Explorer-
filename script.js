@@ -5,9 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeButton = document.querySelector('#home-button');
     homeButton.addEventListener('click', goHome);
 
-    // Select search button and add click event listener
-    const searchButton = document.querySelector('#search-button');
-    searchButton.addEventListener('click', performSearch);
+    // Select search form and add submit event listener
+    const searchForm = document.querySelector('#search-form');
+    searchForm.addEventListener('submit', performSearch);
+
+    // Select the favorites and watchlist sections
+    const favoritesSection = document.querySelector('#favorites-section');
+    const watchlistSection = document.querySelector('#watchlist-section');
 
     // Fetch movies and display them once they're loaded
     getMovies().then(displayMovies);
@@ -15,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Display the user's favorites and watchlist
     displayFavorites();
     displayWatchlist();
+
+    // Listen for changes in favorites and watchlist sections
+    favoritesSection.addEventListener('change', handleFavoritesChange);
+    watchlistSection.addEventListener('change', handleWatchlistChange);
 });
 
 // Function to navigate to the home page
@@ -25,10 +33,11 @@ function goHome() {
 }
 
 // Perform a movie search based on the user's input
-function performSearch() {
-    console.log('performSearch called');
+function performSearch(event) {
+    event.preventDefault(); // Prevent form submission
+    
     const searchTerm = document.querySelector('#search-input').value;
-    console.log('searchTerm:', searchTerm);
+    
     searchMovies(searchTerm);
 }
 
@@ -48,7 +57,7 @@ function searchMovies(searchTerm) {
             }
 
             data.results.forEach(movie => {
-                console.log('Adding movie:', movie.title); 
+                
                 addMovieToPage(movie);
             });
         })
